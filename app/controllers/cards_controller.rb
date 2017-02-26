@@ -9,7 +9,7 @@ class CardsController < ApplicationController
 	end
 
 	def show
-  	cards = MTG::Card.where(set: 'ktk').where(subtypes: 'warrior,human').all
+  	@cards = MTG::Card.where(set: 'ktk').where(subtypes: 'warrior,human').all
   end
 
 end
