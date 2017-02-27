@@ -8,7 +8,7 @@ class CreateCards < ActiveRecord::Migration[5.0]
 			t.string :mana_cost
 			t.string :cmc
 			t.string :colors
-			t.string :type
+			t.string :card_type
 			t.string :supertypes
 			t.string :subtypes
 			t.string :rarity
@@ -38,7 +38,7 @@ class CreateCards < ActiveRecord::Migration[5.0]
 			t.string :image_url
 			t.string :set
 			t.string :set_name
-			t.string :id
+			t.string :id_code
 
       t.timestamps null: false
     end

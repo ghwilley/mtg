@@ -1,6 +1,12 @@
 require 'mtg_sdk'
 
 class CardsController < ApplicationController
+  respond_to do |format|
+    format.html
+    format.json { @cards = Card.search_db(params[:term]) }
+  end
+
+
 	def new
 	end
 
@@ -11,5 +17,6 @@ class CardsController < ApplicationController
 	def show
   	@cards = MTG::Card.where(set: 'ktk').where(subtypes: 'warrior,human').all
   end
+
 
 end
