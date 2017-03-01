@@ -7,7 +7,7 @@ app.Cards.prototype = {
   _initAutocomplete: function() {
     this._input
       .autocomplete({
-        source: '/cards/search',
+        source: '/cards',
         appendTo: '#cards-search-results',
         select: $.proxy(this._select, this)
       })
@@ -15,6 +15,7 @@ app.Cards.prototype = {
   },
 
   _render: function(ul, item) {
+
     var markup = [
       '<span class="img">',
         '<img src="' + item.image_url + '" />',
