@@ -2,7 +2,7 @@ class MainController < ApplicationController
 	
 
   def index
-
+  	@cards = Card.all
   end
 
   

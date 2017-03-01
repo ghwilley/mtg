@@ -2,14 +2,22 @@
 <p>search</p>
 
 
-<div class="cards-search">
-  <input type="text" id="cards-search-txt" autofocus>
-  <div class="results" id="cards-search-results"></div>
-</div>
+ <section class="app-content">
+    <div class="cards-search">
+      <input type="text" id="cards-search-txt" autofocus>
+      <div class="results" id="cards-search-results"></div>
+    </div>
+  </section>
 
 
-<script>
-  $(function() {
-    new app.Cards;
-  });
-</script>
+
+ <% @cards.each do |card| %>
+  <li><img src='<%= card.image_url %>' /></li>
+<% end %>
+
+
+
+
+<%= content_for :script do %>
+  new app.Cards;
+<% end %>

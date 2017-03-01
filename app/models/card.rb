@@ -1,6 +1,6 @@
 class Card < ApplicationRecord
 	def self.search_db(term)
-	  where('ILIKE(name) LIKE :term', term: "%#{term.downcase}%")
+	  Card.where('name LIKE ?',  "%#{term}%")
 	end
 
 	def self.search_api(term)
