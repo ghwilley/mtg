@@ -16,9 +16,6 @@
 
 
 
- <% @cards.each do |card| %>
-  <li><img src='<%= card.image_url %>' /></li>
-<% end %>
 
 
 
@@ -26,4 +23,8 @@
 
 <%= content_for :script do %>
   new app.Cards;
+<% end %>
+
+ <% @cards.each do |card| %>
+  <li><img src='<%= card.image_url %>' /></li>
 <% end %>
