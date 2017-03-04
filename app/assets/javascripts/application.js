@@ -15,6 +15,4 @@
 //= require jquery-ui/widgets/autocomplete
 //= require_tree .
 
-//= require app
-//= require cards
 
