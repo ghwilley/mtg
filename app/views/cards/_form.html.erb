@@ -1,3 +1,12 @@
+
+
+
+
+<!-- <div id="project-label">Auto</div>
+<input id="select_origin">
+<input type="hidden" id="card_multiverse_id">
+<p id="project-description"></p> -->
+
 <%= form_for(@card) do |f| %>
   <% if @card.errors.any? %>
     <div id="error_explanation">
@@ -11,18 +20,11 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div>
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :id => "select_origin" %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
-
-
-<div id="project-label">Auto</div>
-<input id="select_origin">
-<input type="hidden" id="card_multiverse_id">
-<p id="project-description"></p>

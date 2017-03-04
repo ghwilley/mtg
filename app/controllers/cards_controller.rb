@@ -5,14 +5,15 @@ class CardsController < ApplicationController
   def index  
 		@cards = Card.all
     if params[:search]
-    @cards = MTG::Card.where(name: :search).all
-     # @cards = Card.order(:name).where("name ILIKE ?", "%#{params[:search]}%")
+    # @cards = MTG::Card.where(name: :search).all
+     @cards = Card.order(:name).where("name ILIKE ?", "%#{params[:search]}%")
     else
     end
 
   respond_to do |format|  
     format.html # index.html.erb  
 		# Here is where you can specify how to handle the request for "/cards.json"
+    @cards = MTG::Card.where(name: :search).all
     format.json { render :json => @cards.to_json }
     end
 	end
@@ -20,18 +21,6 @@ class CardsController < ApplicationController
 
 	def new
 		@card = Card.new
-		@cards = Card.all
-		if params[:search]
-    @cards = MTG::Card.where(name: :search).all
-     # @cards = Card.order(:name).where("name ILIKE ?", "%#{params[:search]}%")
-    else
-    end
-
-		respond_to do |format|  
-    format.html # index.html.erb  
-		# Here is where you can specify how to handle the request for "/cards.json"
-    format.json { render :json => @cards.to_json }
-    end
 	end
 
 	def show
