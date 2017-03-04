@@ -1,17 +1,62 @@
-<h1>NEW</h1>
+<script type="text/javascript">
+    $(function() {
 
-<%= form_for :card, url: cards_path do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
+ // Below is the name of the textfield that will be autocomplete    
+    $('#select_origin').autocomplete({
+            minLength: 1,
+            source: '<%= cards_path(:json) %>',
+  // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the card.name.
+            focus: function(event, ui) {
+                $('#select_origin').val(ui.item.card.name);
+                return false;
+            },
+ // Once a value in the drop down list is selected, do the following:
+            select: function(event, ui) {
+ // place the card.name value into the textfield called 'select_origin'...
+                $('#select_origin').val(ui.item.card.name);
+ // and place the card.id into the hidden textfield called 'link_origin_id'. 
+        // $('#link_origin_id').val(ui.item.card.multiverse_id);
+                return false;
+            }
+        })
+ // The below code is straight from the jQuery example. It formats what data is displayed in the dropdown box, and can be customized.
+        .autocomplete( "instance" )._renderItem = function( ul, item ) {
+            return $( "<li>" )
+                
+ // For now which just want to show the card.name in the list.
+                .append( "<a>" + item.name + "</a>" )
+                .appendTo( ul );
+        };
+    });
+    </script>
+
  
+<div id="project-label">Select a project (type "j" for a start):</div>
+<input id="select_origin">
+<input type="hidden" id="card_multiverse_id">
+<p id="project-description"></p>
+
+
+
+<h1>New link</h1>
+
+<% form_for(@card) do |f| %>
+
+<!-- Place the following text fields in your form, the names are not important. What is important is that they match the names in your javascript above -->
   <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
+        Select which card you want to link:<br /> 
+<!-- This is the textfield that will autocomplete. What is displayed here is for the user to see but the data will not go anywhere -->
+        <input id="select_origin"/>
+<!-- This is the hidden textfield that will be given the Cards ID based on who is selected. This value will be sent as a parameter -->
+      <input id="card_multiverse_id" name="link[multiverse_id]" type="hidden"/>
   </p>
- 
+<!-- end of notes -->
   <p>
-    <%= f.submit %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit 'Create' %>
   </p>
 <% end %>

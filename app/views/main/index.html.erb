@@ -10,14 +10,39 @@
   </section>
 
 
-
  <% @cards.each do |card| %>
   <li><img src='<%= card.image_url %>' /></li>
 <% end %>
 
 
-
-
 <%= content_for :script do %>
   new app.Cards;
 <% end %>
+
+ 
+
+<script type="text/javascript">
+    $(function() {
+
+ // Below is the name of the textfield that will be autocomplete    
+    $('#cards-search').autocomplete({
+            minLength: 1,
+            source: '<%= cards_path(:json) %>',
+            focus: function(event, ui) {
+                $('#cards-search').val(ui.item.card.name);
+                return false;
+            },
+            select: function(event, ui) {
+                $('#cards-search').val(ui.item.card.name);
+                return false;
+            }
+        })
+        .autocomplete( "instance" )._renderItem = function( ul, item ) {
+            return $( "<li>" )
+                
+                .append( "<a>" + item.name + "</a>" )
+                .appendTo( ul );
+        };
+    });
+    </script>
+
