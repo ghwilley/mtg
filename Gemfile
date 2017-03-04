@@ -23,9 +23,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'rails-jquery-autocomplete'
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'turbolinks', '~> 5.0.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

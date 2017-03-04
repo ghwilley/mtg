@@ -1,4 +1,9 @@
- <% @cards.each do |card| %>
-  <li><%= card.name %></li>
-  <li><img src='<%= card.image_url %>' /></li>
-<% end %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @card.name %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>
