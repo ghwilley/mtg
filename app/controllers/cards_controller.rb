@@ -7,12 +7,11 @@ class CardsController < ApplicationController
   # end
 
   def index  
-# I will explain this part in a moment.
-  if params[:name]
-    @cards = Card.where('name LIKE ?',  "%#{:name}%").order(name)
-  else
-    @cards = Card.all
-  end
+		@cards = Card.all
+    if params[:search]
+     @cards = Card.order(:name).where("name ILIKE ?", "%#{params[:search]}%")
+    else
+    end
 
   respond_to do |format|  
     format.html # index.html.erb  

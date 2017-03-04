@@ -7,13 +7,13 @@
             source: '<%= cards_path(:json) %>',
   // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the card.name.
             focus: function(event, ui) {
-                $('#select_origin').val(ui.item.card.name);
+                $('#select_origin').val(ui.item.name);
                 return false;
             },
  // Once a value in the drop down list is selected, do the following:
             select: function(event, ui) {
  // place the card.name value into the textfield called 'select_origin'...
-                $('#select_origin').val(ui.item.card.name);
+                $('#select_origin').val(ui.item.name);
  // and place the card.id into the hidden textfield called 'link_origin_id'. 
         // $('#link_origin_id').val(ui.item.card.multiverse_id);
                 return false;
