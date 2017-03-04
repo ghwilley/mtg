@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
-	autocomplete :card, :name, :full => false
+	autocomplete :card, :name, :full => false, :limit => 3
 
 	def index
     @cards = Card.all

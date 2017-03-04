@@ -11,7 +11,7 @@
 <!-- text field tag=action,args,identifier,placeholdertext... -->
 <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Card Search", type: "search", data: {autocomplete: cards_autocomplete_card_name_path} %>  
 
-<%= submit_tag "Search" %>
+<%= submit_tag "Delve" %>
 <%end%>
 <script type="text/javascript" charset="utf-8">
   $('#search').bind('railsAutocomplete.select', function(event, data){
@@ -22,7 +22,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Cube preview</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -32,7 +32,7 @@
       <tr>
         <td><%= card.name %></td>
      
-        <td><%= link_to 'Show', card %></td>
+        <td><%= link_to 'Details', card %></td>
         <td><%= link_to 'Edit', edit_card_path(card) %></td>
         <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you fucking sure?' } %></td>
       </tr>
