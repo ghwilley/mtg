@@ -1,6 +1,7 @@
 
 
 
+ <% cards_path(:json) %>  
 
 <h1>Add to the cube</h1>
 
@@ -10,22 +11,38 @@
 
 
 <script type="text/javascript">
-    // $('#select_origin').on('ready', 
     $(function() {
+      
 
- // Below is the name of the textfield that will be autocomplete    
+      var str;
+
+
+      $('#select_origin').on('keyup', function() {
+        str = `https://api.magicthegathering.io/v1/cards?name=${$('#select_origin').val()}&pageSize=5`
+      })
+      var request_add = `https://api.magicthegathering.io/v1/cards?name=${str}&pageSize=5`;
+
     $('#select_origin').autocomplete({
-            minLength: 1,
-            source: 'https://api.magicthegathering.io/v1/cards?name=' + $('#select_origin').val(),
+            minLength: 3,
+            source: function (request, response) {
+                     $.ajax({
+                         url: str,
+                         type: "GET",
+                         data: request,
+                         dataType: "json",
+                         success: function (data) {
+                             response($.map(data, function (el) {
+                                 return { el };
+                             }));
+                         }
+                     });
+                },
             focus: function(event, ui) {
                 $('#select_origin').val(ui.item.name);
                 return false;
             },
- // Once a value in the drop down list is selected, do the following:
             select: function(event, ui) {
                 $('#select_origin').val(ui.item.name);
- // and place the card.id into the hidden textfield called 'link_origin_id'. 
-        // $('#link_origin_id').val(ui.item.card.multiverse_id);
                 return false;
             }
         })
@@ -35,6 +52,7 @@
                 .append( "<a>" + item.name + "</a>" )
                 .append("<a>" + item.multiverse_id + "</a>")
                 .append(console.log(item))
+                .append(console.log(str))
                 .appendTo( ul );
         };
     });
