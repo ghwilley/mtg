@@ -20,7 +20,6 @@
       $('#select_origin').on('keyup', function() {
         str = `https://api.magicthegathering.io/v1/cards?name=${$('#select_origin').val()}&pageSize=5`
       })
-      var request_add = `https://api.magicthegathering.io/v1/cards?name=${str}&pageSize=5`;
 
     $('#select_origin').autocomplete({
             minLength: 3,
@@ -28,17 +27,16 @@
                      $.ajax({
                          url: str,
                          type: "GET",
-                         data: request,
                          dataType: "json",
                          success: function (data) {
-                             response($.map(data, function (el) {
-                                 return { el };
+                             response($.map(data.cards, function (card) {
+                                 return { card };
                              }));
                          }
                      });
                 },
             focus: function(event, ui) {
-                $('#select_origin').val(ui.item.name);
+                $('#select_origin').val(ui.item.card.name);
                 return false;
             },
             select: function(event, ui) {
@@ -48,9 +46,8 @@
         })
         .autocomplete( "instance" )._renderItem = function( ul, item ) {
             return $( "<li>" )
-                
-                .append( "<a>" + item.name + "</a>" )
-                .append("<a>" + item.multiverse_id + "</a>")
+                .append( "<a>" + item.card.name + "</a>" )
+                .append("<a>" + item.card.multiverseid + "</a>")
                 .append(console.log(item))
                 .append(console.log(str))
                 .appendTo( ul );
