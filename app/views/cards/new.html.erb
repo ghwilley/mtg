@@ -12,7 +12,6 @@
 
 <script type="text/javascript">
     $(function() {
-      
 
       var str;
 
@@ -40,14 +39,13 @@
                 return false;
             },
             select: function(event, ui) {
-                $('#select_origin').val(ui.item.name);
+                $('#select_origin').val(ui.item.card.name);
                 return false;
             }
         })
         .autocomplete( "instance" )._renderItem = function( ul, item ) {
             return $( "<li>" )
                 .append( "<a>" + item.card.name + "</a>" )
-                .append("<a>" + item.card.multiverseid + "</a>")
                 .append(console.log(item))
                 .append(console.log(str))
                 .appendTo( ul );
